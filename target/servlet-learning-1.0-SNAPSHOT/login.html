@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="DispatcherServlet" method="GET">
+    <label>用户名</label>
+    <input type="text" name="username"/>
+    <br>
+    <label>密码</label>
+    <input type="password" name="password"/>
+    <br>
+    <label>性别</label>
+    <input type="radio" name="sex" value="男"/>男
+    <input type="radio" name="sex" value="女"/>女
+    <br>
+    <label>使用的语言</label>
+    <input type="checkbox" name="language" value="JAVA"> JAVA
+    <input type="checkbox" name="language" value="C"> C
+    <input type="checkbox" name="language" value="PHP"> PHP
+    <input type="checkbox" name="language" value="Python"> Python
+    <br>
+    <label>城市</label>
+    <select name="city">
+        <option value="none">---请选择---</option>
+        <option value="北京">北京</option>
+        <option value="上海">上海</option>
+        <option value="广州">广州</option>
+    </select>
+    <br>
+    <input type="submit" value="提交">
+</form>
+</body>
+</html>

@@ -3,6 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+<!--    设置session的过期时间-->
+    <session-config>
+        <session-timeout>10</session-timeout>
+    </session-config>
+<!--    其中-->
+<!--    session-timeout用来指定默认Session过期时间，以分钟为单位，该元素值必须是整数。-->
+<!--    session-timeout元素的值为零或负数，表示Session永远不会过期。-->
 <!--    设置上下文初始化参数-->
     <context-param>
         <param-name>appname</param-name>
