@@ -3,6 +3,77 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+<!--    注册监听器-->
+    <listener>
+        <listener-class>us.fjj.servletlearning.MyListener</listener-class>
+    </listener>
+    <filter>
+        <filter-name>BlackListFilter</filter-name>
+        <filter-class>us.fjj.servletlearning.BlackListFilter</filter-class>
+        <init-param>
+            <param-name>black1</param-name>
+            <param-value>黑名单用户(param-value表示用户名)</param-value>
+        </init-param>
+        <init-param>
+            <param-name>black2</param-name>
+            <param-value>黑名单用户(param-value表示用户名)</param-value>
+        </init-param>
+        <init-param>
+            <param-name>black3</param-name>
+            <param-value>bbk</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>BlackListFilter</filter-name>
+        <url-pattern>/Login2Servlet</url-pattern>
+    </filter-mapping>
+<!--    过滤器链中的FirstChainFilter配置-->
+    <filter>
+        <filter-name>FirstChainFilter</filter-name>
+        <filter-class>us.fjj.servletlearning.FirstChainFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FirstChainFilter</filter-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </filter-mapping>
+    <!--    过滤器链中的SecondChainFilter配置-->
+    <filter>
+        <filter-name>SecondChainFilter</filter-name>
+        <filter-class>us.fjj.servletlearning.SecondChainFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>SecondChainFilter</filter-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </filter-mapping>
+    <!--    注册Filter-->
+    <filter><!--用于注册过滤器-->
+        <filter-name>MyFilter2</filter-name><!--用于指定过滤器的注册名-->
+        <filter-class>us.fjj.servletlearning.MyFilter</filter-class><!--用于指定过滤器的完整限定名（包名+类名）-->
+        <init-param><!--为过滤器指定初始化参数-->
+            <param-name>name</param-name>
+            <param-value>Website Name</param-value>
+        </init-param>
+        <init-param>
+            <param-name>url</param-name>
+            <param-value>www.fjj.com</param-value>
+        </init-param>
+    </filter>
+<!--    映射Filter-->
+    <filter-mapping><!--用于设置Filter负责拦截的资源-->
+        <filter-name>MyFilter2</filter-name><!--用于Filter的注册名-->
+        <url-pattern>/login</url-pattern><!--用于设置Filter拦截的请求路径-->
+        <dispatcher>REQUEST</dispatcher><!--用于指定Filter拦截的资源被Servlet容器调用的方式，可以是REQUEST\INCLUDE\FORWARD\ERROR之一，默认REQUEST。用户可以设置多个dispatcher子元素指定Filter对资源的多种调用方式进行拦截。-->
+        <dispatcher>FORWARD</dispatcher>
+<!--        <dispatcher>元素取值及其意义：
+1.REQUEST:当用户直接访问页面时，容器将会调用过滤器。如果目标资源是通过RequestDispatcher的include()或forward()方法访问，则该过滤器不会被调用。
+2.INCLUDE:如果目标资源通过RequestDispatcher的include()方法访问，则该过滤器将被调用。除此之外，该过滤器不会被调用。
+3.FORWARD:如果目标资源通过RequestDispatcher的forward()方法访问，则该过滤器将被调用，除此之外，该过滤器不会被调用。
+4.ERROR:如果目标资源通过声明式异常处理机制访问，，则该过滤器将被调用。除此之外，该过滤器不会被调用。-->
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>MyFilter2</filter-name>
+        <servlet-name>FilterDemoServlet</servlet-name>
+    </filter-mapping>
 <!--    设置session的过期时间-->
     <session-config>
         <session-timeout>10</session-timeout>
